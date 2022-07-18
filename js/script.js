@@ -69,7 +69,6 @@ repoList.addEventListener("click", function(e) {
 const getRepoInfo = async function(repoName) {
     const fetchInfo = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
     const repoInfo = await fetchInfo.json();
-    console.log(repoInfo);
 
     // Grab languages
     const fetchLanguages = await fetch(repoInfo.languages_url);
@@ -98,12 +97,14 @@ const displayRepoInfo = function(repoInfo, languages) {
     viewReposButton.classList.remove("hide");
 }
 
+//Button that takes user back to full list of repos
 viewReposButton.addEventListener("click", function() {
     repoData.classList.add("hide");
     allReposContainer.classList.remove("hide");
     viewReposButton.classList.add("hide");
 })
 
+//Responsive and dynamic search field to filter through listed repos
 filterInput.addEventListener("input", function(e) {
     const searchText = e.target.value; 
     const repos = document.querySelectorAll(".repo");
